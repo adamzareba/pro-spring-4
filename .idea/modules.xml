@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/chapter-2-getting-started/chapter-2-getting-started.iml" filepath="$PROJECT_DIR$/chapter-2-getting-started/chapter-2-getting-started.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chapter-3-introducing-ioc-and-di-in-spring/chapter-3-introducing-ioc-and-di-in-spring.iml" filepath="$PROJECT_DIR$/chapter-3-introducing-ioc-and-di-in-spring/chapter-3-introducing-ioc-and-di-in-spring.iml" />
       <module fileurl="file://$PROJECT_DIR$/pro-spring-4.iml" filepath="$PROJECT_DIR$/pro-spring-4.iml" />
     </modules>
   </component>
