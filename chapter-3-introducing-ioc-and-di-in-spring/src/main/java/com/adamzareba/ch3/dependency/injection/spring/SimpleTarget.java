@@ -1,7 +1,14 @@
 package com.adamzareba.ch3.dependency.injection.spring;
 
-/**
- * Created by Adam Zareba on 28.01.2017.
- */
 public class SimpleTarget {
+
+    private String val;
+
+    public void setVal(String val) {
+        this.val = val;
+    }
+
+    public String getVal() {
+        return val;
+    }
 }

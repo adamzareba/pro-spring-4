@@ -10,5 +10,17 @@
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>chapter-3-introducing-ioc-and-di-in-spring</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>com.adamzareba</groupId>
+            <artifactId>chapter-2-getting-started</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring-version}</version>
+        </dependency>
+    </dependencies>
 
 </project>

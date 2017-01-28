@@ -1,7 +1,17 @@
 package com.adamzareba.ch3.dependency.injection.spring.xml;
 
-/**
- * Created by Adam Zareba on 28.01.2017.
- */
-public class ConfigurableMessageProvider {
+import com.adamzareba.ch2.MessageProvider;
+
+public class ConfigurableMessageProvider implements MessageProvider {
+
+    private String message;
+
+    public ConfigurableMessageProvider(String message) {
+        this.message = message;
+    }
+
+    @Override
+    public String getMessage() {
+        return message;
+    }
 }

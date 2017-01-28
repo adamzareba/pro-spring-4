@@ -1,7 +1,14 @@
 package com.adamzareba.ch3.dependency.injection.spring.annotation;
 
-/**
- * Created by Adam Zareba on 28.01.2017.
- */
-public class HelloWorldMessageProvider {
+import com.adamzareba.ch2.MessageProvider;
+
+import org.springframework.stereotype.Service;
+
+//@Service("messageProvider")
+public class HelloWorldMessageProvider implements MessageProvider {
+
+    @Override
+    public String getMessage() {
+        return "Hello World! I am annotated class!";
+    }
 }
