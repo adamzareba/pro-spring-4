@@ -6,6 +6,7 @@
     <artifactId>pro-spring-4</artifactId>
     <version>1.0</version>
     <modules>
+        <module>chapter-2-getting-started</module>
         <module>chapter-3-introducing-ioc-and-di-in-spring</module>
     </modules>
     <packaging>pom</packaging>
