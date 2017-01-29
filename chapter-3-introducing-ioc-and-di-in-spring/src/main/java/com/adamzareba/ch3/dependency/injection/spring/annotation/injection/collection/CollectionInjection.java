@@ -1,42 +1,37 @@
-package com.adamzareba.ch3.dependency.injection.spring.xml;
+package com.adamzareba.ch3.dependency.injection.spring.annotation.injection.collection;
 
 import org.springframework.context.support.GenericXmlApplicationContext;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
+import javax.annotation.Resource;
+
+@Service("injectCollection")
 public class CollectionInjection {
 
+    @Resource(name = "map")
     private Map<String, Object> map;
+
+    @Resource(name = "props")
     private Properties props;
+
+    @Resource(name = "set")
     private Set set;
+
+    @Resource(name = "list")
     private List list;
 
     public static void main(String[] args) {
         GenericXmlApplicationContext ctx = new GenericXmlApplicationContext();
-        ctx.load("classpath:META-INF/spring/app-context-xml.xml");
+        ctx.load("classpath:META-INF/spring/app-context-annotation.xml");
         ctx.refresh();
 
         CollectionInjection instance = (CollectionInjection) ctx.getBean("injectCollection");
         instance.displayInfo();
-    }
-
-    public void setList(List list) {
-        this.list = list;
-    }
-
-    public void setSet(Set set) {
-        this.set = set;
-    }
-
-    public void setMap(Map<String, Object> map) {
-        this.map = map;
-    }
-
-    public void setProps(Properties props) {
-        this.props = props;
     }
 
     public void displayInfo() {
@@ -57,7 +52,8 @@ public class CollectionInjection {
         for (Object obj : set) {
             System.out.println("Value: " + obj);
         }
-        System.out.println("\nList contents:\n");
+
+        System.out.println("\nList contents:\n ");
 
         for (Object obj : list) {
             System.out.println("Value: " + obj);

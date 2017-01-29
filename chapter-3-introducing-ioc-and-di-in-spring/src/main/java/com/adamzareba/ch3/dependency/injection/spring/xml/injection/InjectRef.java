@@ -1,4 +1,4 @@
-package com.adamzareba.ch3.dependency.injection.spring.xml;
+package com.adamzareba.ch3.dependency.injection.spring.xml.injection;
 
 import com.adamzareba.ch3.dependency.injection.setters.Oracle;
 

@@ -1,4 +1,4 @@
-package com.adamzareba.ch3.dependency.injection.spring.annotation;
+package com.adamzareba.ch3.dependency.injection.spring.annotation.injection;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.support.GenericXmlApplicationContext;
