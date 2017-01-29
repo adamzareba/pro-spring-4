@@ -8,6 +8,7 @@
     <modules>
         <module>chapter-2-getting-started</module>
         <module>chapter-3-introducing-ioc-and-di-in-spring</module>
+        <module>chapter-4-spring-configuration-in-detail</module>
     </modules>
     <packaging>pom</packaging>
 
