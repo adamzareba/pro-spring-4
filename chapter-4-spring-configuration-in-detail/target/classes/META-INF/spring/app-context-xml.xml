@@ -3,7 +3,8 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:p="http://www.springframework.org/schema/p"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans          http://www.springframework.org/schema/beans/spring-beans.xsd          http://www.springframework.org/schema/context          http://www.springframework.org/schema/context/spring-context.xsd"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans          http://www.springframework.org/schema/beans/spring-beans.xsd          http://www.springframework.org/schema/context          http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
        default-lazy-init="true">
 
     <!-- init method -->
@@ -31,4 +32,58 @@
     <bean id="simpleBean3"
           class="com.adamzareba.ch4.bean.initialization.interface_.SimpleBeanWithInterface"
           p:name="Chris Schaefer"/>
+
+    <bean id="destructiveBean" class="com.adamzareba.ch4.bean.destruction.method.DestructiveBean"
+          destroy-method="destroy"
+          p:filePath="#{systemProperties['java.io.tmpdir']}#{systemProperties['file.separator']}test.txt"/>
+
+    <bean id="destructiveBeanWithInterface"
+          class="com.adamzareba.ch4.bean.destruction.interface_.DestructiveBeanWithInterface"
+          p:filePath="#{systemProperties['java.io.tmpdir']}#{systemProperties['file.separator']}test.txt"/>
+
+    <bean id="beanNamePrinter" class="com.adamzareba.ch4.bean.aware.name.BeanNamePrinter"/>
+
+    <!--<bean id="shaDigest" class="com.adamzareba.ch4.bean.factory.MessageDigestFactoryBean"-->
+    <!--p:algorithmName="SHA1"/>-->
+
+    <!--<bean id="defaultDigest" class="com.adamzareba.ch4.bean.factory.MessageDigestFactoryBean"/>-->
+
+    <!--<bean id="digester" class="com.adamzareba.ch4.bean.factory.MessageDigester"-->
+    <!--p:digest1-ref="shaDigest"-->
+    <!--p:digest2-ref="defaultDigest"/>-->
+
+    <bean id="shaDigestFactory" class="com.adamzareba.ch4.bean.factory.MessageDigestFactory"
+          p:algorithmName="SHA1"/>
+
+    <bean id="defaultDigestFactory" class="com.adamzareba.ch4.bean.factory.MessageDigestFactory"/>
+
+    <bean id="shaDigest" factory-bean="shaDigestFactory" factory-method="createInstance"></bean>
+
+    <bean id="defaultDigest" factory-bean="defaultDigestFactory" factory-method="createInstance"/>
+
+    <bean id="digester" class="com.adamzareba.ch4.bean.factory.MessageDigester"
+          p:digest1-ref="shaDigest"
+          p:digest2-ref="defaultDigest"/>
+
+    <!-- property editors -->
+    <bean id="customEditorConfigurer"
+          class="org.springframework.beans.factory.config.CustomEditorConfigurer"
+          p:propertyEditorRegistrars-ref="propertyEditorRegistrarsList"/>
+
+    <util:list id="propertyEditorRegistrarsList">
+        <bean class="com.adamzareba.ch4.bean.propertyEditor.PropertyEditorBean$CustomPropertyEditorRegistrar"/>
+    </util:list>
+
+    <bean id="builtInSample" class="com.adamzareba.ch4.bean.propertyEditor.PropertyEditorBean"
+          p:bytes="Hello World" p:cls="java.lang.String" p:trueOrFalse="true"
+          p:stringList-ref="stringList" p:stream="META-INF/spring/test.txt" p:floatValue="123.45678"
+          p:date="05/03/13"
+          p:file="#{systemProperties['java.io.tmpdir']}#{systemProperties['file.separator']}test.txt"
+          p:locale="en_US" p:pattern="a*b" p:properties="name=Chris age=32"
+          p:trimString="   String need trimming   " p:url="http://www.springframework.org"/>
+
+    <util:list id="stringList">
+        <value>String member 1</value>
+        <value>String member 2</value>
+    </util:list>
 </beans>

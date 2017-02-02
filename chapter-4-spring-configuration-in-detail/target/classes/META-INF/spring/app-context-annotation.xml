@@ -18,4 +18,19 @@
     <bean id="simpleBean3"
           class="com.adamzareba.ch4.bean.initialization.jsr250.SimpleBeanWithJSR250"
           p:name="Chris Schaefer"/>
+
+    <!--<bean id="destructiveBean"-->
+    <!--class="com.adamzareba.ch4.bean.destruction.jsr250.DestructiveBeanWithJSR250"-->
+    <!--p:filePath="#{systemProperties['java.io.tmpdir']}#{systemProperties['file.separator']}test.txt"/>-->
+
+    <!--<bean id="destructiveBean"-->
+          <!--class="com.adamzareba.ch4.bean.destruction.shutdownHook.DestructiveBeanWithInterface"-->
+          <!--p:filePath="#{systemProperties['java.io.tmpdir']}#{systemProperties['file.separator']}test.txt"/>-->
+
+    <bean id="destructiveBean"
+          class="com.adamzareba.ch4.bean.aware.applicationContext.DestructiveBeanWithInterface"
+          p:filePath="#{systemProperties['java.io.tmpdir']}#{systemProperties['file.separator']}test.txt"/>
+
+    <bean id="shutdownHook"
+          class="com.adamzareba.ch4.bean.aware.applicationContext.ShutdownHookBean"/>
 </beans>
