@@ -1,4 +1,4 @@
-package com.adamzareba.ch5.aop.springAop.before;
+package com.adamzareba.ch5.aop.springAop.advice.before;
 
 import com.adamzareba.ch5.aop.springAop.MessageWriter;
 

@@ -1,19 +1,15 @@
-package com.adamzareba.ch5.aop.springAop.around;
+package com.adamzareba.ch5.aop.springAop.pointcut.static_;
 
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 
-public class MessageDecorator implements MethodInterceptor {
+public class SimpleAdvice implements MethodInterceptor {
 
     @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
-        System.out.print("Hello ");
-
+        System.out.println(">>Invoking " + invocation.getMethod().getName());
         Object retVal = invocation.proceed();
-
-        System.out.println("!");
-
+        System.out.println(">>Done");
         return retVal;
     }
 }
-

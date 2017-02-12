@@ -1,4 +1,4 @@
-package com.adamzareba.ch5.aop.springAop.around;
+package com.adamzareba.ch5.aop.springAop.advice.around;
 
 import com.adamzareba.ch5.aop.springAop.MessageWriter;
 
