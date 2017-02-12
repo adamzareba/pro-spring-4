@@ -18,6 +18,8 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring-version>4.3.4.RELEASE</spring-version>
+        <javax-inject>1</javax-inject>
+        <apache-groovy>2.4.8</apache-groovy>
         <lombok-version>1.16.12</lombok-version>
     </properties>
 

@@ -3,6 +3,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
        xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="http://www.springframework.org/schema/beans          http://www.springframework.org/schema/beans/spring-beans.xsd          http://www.springframework.org/schema/context          http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
        default-lazy-init="true">
@@ -66,24 +67,71 @@
           p:digest2-ref="defaultDigest"/>
 
     <!-- property editors -->
-    <bean id="customEditorConfigurer"
-          class="org.springframework.beans.factory.config.CustomEditorConfigurer"
-          p:propertyEditorRegistrars-ref="propertyEditorRegistrarsList"/>
+    <!--<bean id="customEditorConfigurer"-->
+    <!--class="org.springframework.beans.factory.config.CustomEditorConfigurer"-->
+    <!--p:propertyEditorRegistrars-ref="propertyEditorRegistrarsList"/>-->
 
-    <util:list id="propertyEditorRegistrarsList">
-        <bean class="com.adamzareba.ch4.bean.propertyEditor.PropertyEditorBean$CustomPropertyEditorRegistrar"/>
+    <!--<util:list id="propertyEditorRegistrarsList">-->
+    <!--<bean class="com.adamzareba.ch4.bean.propertyEditor.PropertyEditorBean$CustomPropertyEditorRegistrar"/>-->
+    <!--</util:list>-->
+
+    <!--<bean id="builtInSample" class="com.adamzareba.ch4.bean.propertyEditor.PropertyEditorBean"-->
+    <!--p:bytes="Hello World" p:cls="java.lang.String" p:trueOrFalse="true"-->
+    <!--p:stringList-ref="stringList" p:stream="META-INF/spring/test.txt" p:floatValue="123.45678"-->
+    <!--p:date="05/03/13"-->
+    <!--p:file="#{systemProperties['java.io.tmpdir']}#{systemProperties['file.separator']}test.txt"-->
+    <!--p:locale="en_US" p:pattern="a*b" p:properties="name=Chris age=32"-->
+    <!--p:trimString="   String need trimming   " p:url="http://www.springframework.org"/>-->
+
+    <!--<util:list id="stringList">-->
+    <!--<value>String member 1</value>-->
+    <!--<value>String member 2</value>-->
+    <!--</util:list>-->
+
+    <!-- cstom property editors -->
+    <bean name="customEditorConfigurer"
+          class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+        <property name="customEditors">
+            <map>
+                <entry key="com.adamzareba.ch4.bean.propertyEditor.custom.Name"
+                       value="com.adamzareba.ch4.bean.propertyEditor.custom.NamePropertyEditor"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="exampleBean" class="com.adamzareba.ch4.bean.propertyEditor.custom.CustomEditorExample"
+          p:name="Chris Schaefer"/>
+
+    <!-- locales -->
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource"
+          p:basenames-ref="basenames"/>
+
+    <util:list id="basenames">
+        <value>buttons</value>
+        <value>labels</value>
     </util:list>
 
-    <bean id="builtInSample" class="com.adamzareba.ch4.bean.propertyEditor.PropertyEditorBean"
-          p:bytes="Hello World" p:cls="java.lang.String" p:trueOrFalse="true"
-          p:stringList-ref="stringList" p:stream="META-INF/spring/test.txt" p:floatValue="123.45678"
-          p:date="05/03/13"
-          p:file="#{systemProperties['java.io.tmpdir']}#{systemProperties['file.separator']}test.txt"
-          p:locale="en_US" p:pattern="a*b" p:properties="name=Chris age=32"
-          p:trimString="   String need trimming   " p:url="http://www.springframework.org"/>
+    <!-- events -->
+    <bean id="publisher" class="com.adamzareba.ch4.applicationContext.events.Publisher"/>
 
-    <util:list id="stringList">
-        <value>String member 1</value>
-        <value>String member 2</value>
-    </util:list>
+    <bean id="messageEventListener"
+          class="com.adamzareba.ch4.applicationContext.events.MessageEventListener"/>
+
+    <!-- renderer and provider example -->
+    <bean id="messageRenderer"
+          class="com.adamzareba.ch4.applicationContext.configuration.StandardOutMessageRenderer"
+          p:messageProvider-ref="messageProvider"/>
+
+    <bean id="messageProvider"
+          class="com.adamzareba.ch4.applicationContext.configuration.ConfigurableMessageProvider"
+          c:message="This is a configurable message"/>
+
+    <!-- property sources -->
+    <context:property-placeholder local-override="true"
+                                  location="classpath:META-INF/spring/application.properties"/>
+
+    <bean id="appProperty" class="com.adamzareba.ch4.applicationContext.environment.AppProperty">
+        <property name="applicationHome" value="${application.home}"/>
+        <property name="userHome" value="${user.home}"></property>
+    </bean>
 </beans>
