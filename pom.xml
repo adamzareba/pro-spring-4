@@ -22,6 +22,7 @@
         <javax-inject>1</javax-inject>
         <apache-groovy>2.4.8</apache-groovy>
         <lombok-version>1.16.12</lombok-version>
+        <aspectj-version>1.8.11</aspectj-version>
     </properties>
 
     <dependencies>
