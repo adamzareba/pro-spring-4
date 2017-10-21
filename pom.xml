@@ -10,6 +10,7 @@
         <module>chapter-3-introducing-ioc-and-di-in-spring</module>
         <module>chapter-4-spring-configuration-in-detail</module>
         <module>chapter-5-introducing-spring-aop</module>
+        <module>chapter-6-spring-jdbc-support</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -23,6 +24,7 @@
         <apache-groovy>2.4.8</apache-groovy>
         <lombok-version>1.16.12</lombok-version>
         <aspectj-version>1.8.11</aspectj-version>
+        <h2-version>1.4.196</h2-version>
     </properties>
 
     <dependencies>
